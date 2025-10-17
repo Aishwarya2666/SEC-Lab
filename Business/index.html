@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SM HandMade Works — Handcrafted Gold Jewellery</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Fonts */
+    :root {
+      --serif: "Playfair Display", serif;
+      --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --gold-1: #b8860b;
+      --gold-2: #ffd26b;
+      --gold-3: #f5d07a;
+      --rich: linear-gradient(90deg, rgba(189,142,40,1) 0%, rgba(255,210,107,1) 50%, rgba(189,142,40,1) 100%);
+    }
+
+    /* Shimmer / gold shine for headings and logo */
+    .gold-shimmer {
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(189,142,40,0.9) 0%, rgba(255,242,205,0.9) 45%, rgba(189,142,40,0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* moving highlight */
+    .gold-shimmer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(255,255,255,0) 0 30%, rgba(255,255,255,0.7) 45%, rgba(255,255,255,0) 60%);
+      transform: translateX(-120%);
+      mix-blend-mode: overlay;
+      animation: shimmer 3s linear infinite;
+      border-radius: 4px;
+    }
+
+    @keyframes shimmer {
+      0%   { transform: translateX(-120%); }
+      60%  { transform: translateX(120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    /* Logo badge shimmer */
+    .logo-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, rgba(255,244,224,1), rgba(255,224,120,0.95) 25%, rgba(178,111,15,0.9) 60%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 22px rgba(61,36,6,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-badge::after{
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.0) 0 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.0) 60%);
+      transform: rotate(20deg) translateX(-100%);
+      animation: shimmer 3s linear infinite;
+      mix-blend-mode: overlay;
+    }
+
+    /* subtle gradient background for hero */
+    .hero-bg {
+      background: linear-gradient(180deg, rgba(255,249,238,1) 0%, rgba(255,244,227,1) 45%, rgba(255,241,230,1) 100%);
+      background-image: url('https://images.unsplash.com/photo-1614007651457-5c0d9a3f5f59?auto=format&fit=crop&w=1800&q=70');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* card accent */
+    .gold-accent {
+      background: linear-gradient(180deg, rgba(255,247,230,1), rgba(255,241,222,1));
+      border: 1px solid rgba(210,170,60,0.15);
+    }
+
+    /* focus style for form */
+    input:focus, textarea:focus {
+      outline: 2px solid rgba(189,142,40,0.18);
+      box-shadow: 0 6px 18px rgba(189,142,40,0.06);
+    }
+
+    /* small screens tweak for hero height */
+    @media (max-width: 640px) {
+      .hero-min-h { min-height: 60vh; }
+    }
+    @media (min-width: 641px) {
+      .hero-min-h { min-height: 78vh; }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="flex items-center justify-between py-3 md:py-4">
+        <!-- left: logo -->
+        <div class="flex items-center gap-4">
+          <div class="logo-badge" aria-hidden="true">
+            <!-- simple gold monogram -->
+            <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="drop-shadow">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#f7dfb5"/>
+                  <stop offset="1" stop-color="#b8860b"/>
+                </linearGradient>
+              </defs>
+              <text x="50" y="58" text-anchor="middle" font-family="Playfair Display, serif" font-weight="700" font-size="44" fill="url(#g1)">SM</text>
+            </svg>
+          </div>
+          <div>
+            <a href="#" class="text-lg md:text-xl font-semibold tracking-tight" style="font-family: var(--serif);">
+              <span class="gold-shimmer">SM HandMade Works</span>
+            </a>
+            <div class="text-xs text-gray-500 -mt-0.5">Handcrafted Gold Jewellery</div>
+          </div>
+        </div>
+
+        <!-- right: nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a class="hover:text-amber-600" href="#home">Home</a>
+          <a class="hover:text-amber-600" href="#about">About</a>
+          <a class="hover:text-amber-600" href="#collections">Collections</a>
+          <a class="hover:text-amber-600" href="#services">Services</a>
+          <a class="hover:text-amber-600" href="#contact">Contact</a>
+        </nav>
+
+        <!-- mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobileBtn" class="p-2 rounded-md" aria-label="Open menu">
+            <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- mobile nav -->
+    <div id="mobileNav" class="md:hidden bg-white border-t border-gray-100 hidden">
+      <div class="px-6 py-4 space-y-2">
+        <a class="block py-2" href="#home">Home</a>
+        <a class="block py-2" href="#about">About</a>
+        <a class="block py-2" href="#collections">Collections</a>
+        <a class="block py-2" href="#services">Services</a>
+        <a class="block py-2" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero-bg hero-min-h flex items-center">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="font-family: var(--serif); line-height:1.02;">
+              <span class="gold-shimmer">Handcrafted Gold Jewellery</span>
+            </h1>
+            <p class="text-gray-700 max-w-xl mx-auto md:mx-0 mb-6">
+              Exquisite designs made with precision and passion. Celebrating tradition and craftsmanship for over <strong>25 years</strong>.
+            </p>
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+              <a href="#collections" class="inline-block px-6 py-3 rounded-full font-semibold shadow-md text-white" style="background: linear-gradient(90deg, #b8860b, #ffd26b);">
+                Explore Collections
+              </a>
+              <a href="#contact" class="inline-block px-6 py-3 rounded-full font-medium border border-amber-200 text-amber-800 bg-white/60 backdrop-blur-sm">
+                Contact Us
+              </a>
+            </div>
+            <div class="mt-6 text-sm text-gray-600">Visit our showroom or request a custom design consultation.</div>
+          </div>
+
+          <!-- hero image card -->
+          <div class="mx-auto md:mx-0">
+            <div class="w-full rounded-2xl overflow-hidden shadow-2xl gold-accent">
+              <img src="https://images.unsplash.com/photo-1542317854-9769b70b47d5?auto=format&fit=crop&w=1400&q=80" alt="Jewellery hero" class="w-full h-80 object-cover md:h-96">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 class="text-3xl font-bold mb-4" style="font-family: var(--serif);"><span class="gold-shimmer">About SM HandMade Works</span></h2>
+            <p class="text-gray-700 mb-4">
+              For over <strong>25 years</strong>, SM HandMade Works has been crafting timeless gold jewellery that blends heritage techniques with modern design.
+              Our artisans work with meticulous attention to detail — from sketch to final polish — to create pieces that are treasured for generations.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+              <li>• Traditional handcrafting + modern finishing</li>
+              <li>• Ethical sourcing & authentic gold certification</li>
+              <li>• Bespoke bridal and heirloom pieces</li>
+            </ul>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <img src="https://images.unsplash.com/photo-1562158071-9b8a66f0e0b3?auto=format&fit=crop&w=800&q=70" alt="Crafting" class="rounded-xl object-cover w-full h-44">
+            <img src="https://images.unsplash.com/photo-1591017406149-1f45f86e3f9d?auto=format&fit=crop&w=800&q=70" alt="Workshop" class="rounded-xl object-cover w-full h-44">
+            <img src="https://images.unsplash.com/photo-1520975929206-836b7139f9a4?auto=format&fit=crop&w=800&q=70" alt="Polish" class="rounded-xl object-cover w-full h-44">
+            <img src="https://images.unsplash.com/photo-1606099947730-d32b8b3e0f1e?auto=format&fit=crop&w=800&q=70" alt="Design" class="rounded-xl object-cover w-full h-44">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS / GALLERY -->
+    <section id="collections" class="py-16 bg-amber-50">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="flex items-center justify-between mb-8">
+          <h3 class="text-2xl font-semibold" style="font-family: var(--serif);"><span class="gold-shimmer">Our Collections</span></h3>
+          <div class="text-sm text-gray-600">Rings • Necklaces • Bangles • Earrings • Bridal Sets</div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- card 1 -->
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://i.pinimg.com/736x/70/93/04/7093048e03a5ca55e206d2d22e56f32b.jpg" alt="Ring" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Timeless Ring</h4>
+              <p class="text-sm text-gray-600 mt-1">Handcrafted 22K gold, custom sizing available.</p>
+            </div>
+          </div>
+
+          <!-- card 2 -->
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/034/781/723/small_2x/ai-generated-beautiful-and-elegant-woman-gold-jewellery-necklace-photo.jpeg" alt="Necklace" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Signature Necklace</h4>
+              <p class="text-sm text-gray-600 mt-1">Elegant bridal and party designs.</p>
+            </div>
+          </div>
+
+          <!-- card 3 -->
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://www.efifdiamonds.com/cdn/shop/products/bl7a.jpg?v=1529937179" alt="Bangles" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Classic Bangles</h4>
+              <p class="text-sm text-gray-600 mt-1">Traditional motifs with modern comfort.</p>
+            </div>
+          </div>
+
+          <!-- card 4 -->
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://kinclimg3.bluestone.com/f_jpg,c_scale,w_1024,q_80,b_rgb:f0f0f0/giproduct/BIPO0690S29_YAA18DIG6PRWHXXXX_ABCD00-PICS-00004-1024-51555.png" alt="Earrings" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Delicate Earrings</h4>
+              <p class="text-sm text-gray-600 mt-1">Everyday to statement styles.</p>
+            </div>
+          </div>
+
+          <!-- card 5 (bridal) -->
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://manubhai.in/SocialMedia/post_artworks/TT-17-24Feb2023.jpg" alt="Bridal set" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Bridal Sets</h4>
+              <p class="text-sm text-gray-600 mt-1">Made-to-order bridal collections.</p>
+            </div>
+          </div>
+
+          <!-- additional placeholders -->
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://t4.ftcdn.net/jpg/01/29/87/19/240_F_129871941_T6zNq24JehPw4CF1TweMoxEodV8I4eeO.jpg" alt="Custom design" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Custom Designs</h4>
+              <p class="text-sm text-gray-600 mt-1">Collaborate with our designers for your vision.</p>
+            </div>
+          </div>
+
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://royisal.com/wp-content/uploads/2021/07/polish.jpg" alt="Polish" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Polishing</h4>
+              <p class="text-sm text-gray-600 mt-1">Restore sparkle & finish.</p>
+            </div>
+          </div>
+
+          <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+            <img src="https://media.gettyimages.com/id/2215479820/photo/shopping-woman-chooses-jewelry-in-store.jpg?s=612x612&w=0&k=20&c=nTwCXIO_m7EzYRrS-QLQy7kSrsXfK8y5vAa6Q7IRfMM=" alt="Gold" class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105">
+            <div class="p-4">
+              <h4 class="font-medium">Old Gold Exchange</h4>
+              <p class="text-sm text-gray-600 mt-1">Fair valuation and exchange options.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-16">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <h3 class="text-2xl md:text-3xl font-bold mb-6" style="font-family: var(--serif);"><span class="gold-shimmer">Our Services</span></h3>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl gold-accent shadow-sm">
+            <h4 class="text-lg font-semibold mb-2">Custom Jewellery Design</h4>
+            <p class="text-gray-700 mb-3">Collaborate with our master designers to create a bespoke piece — from sketch to finished jewellery.</p>
+            <ul class="text-sm text-gray-600">
+              <li>• 3D mockups & CAD previews</li>
+              <li>• Gemstone sourcing</li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-2xl gold-accent shadow-sm">
+            <h4 class="text-lg font-semibold mb-2">Gold Polishing & Repair</h4>
+            <p class="text-gray-700 mb-3">Expert cleaning, polishing, soldering and stone reset to restore your pieces to their original glory.</p>
+            <ul class="text-sm text-gray-600">
+              <li>• Rhodium plating (where applicable)</li>
+              <li>• Stone replacement & clasp repair</li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-2xl gold-accent shadow-sm">
+            <h4 class="text-lg font-semibold mb-2">Old Gold Exchange</h4>
+            <p class="text-gray-700 mb-3">Trusted valuation and exchange programs — turn old or broken jewellery into new designs or cash.</p>
+            <ul class="text-sm text-gray-600">
+              <li>• Transparent weighing & purity check</li>
+              <li>• Instant exchange options</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 bg-amber-50">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <div class="bg-white p-8 rounded-2xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4" style="font-family: var(--serif);"><span class="gold-shimmer">Get in Touch</span></h3>
+            <p class="text-gray-600 mb-4">For consultations, custom orders or repairs — send us a message and we will respond within 24–48 hours.</p>
+            <form id="contactForm" class="space-y-4">
+              <div>
+                <label class="sr-only">Name</label>
+                <input name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border" />
+              </div>
+              <div>
+                <label class="sr-only">Email</label>
+                <input name="email" type="email" required placeholder="Your Email" class="w-full px-4 py-3 rounded-lg border" />
+              </div>
+              <div>
+                <label class="sr-only">Message</label>
+                <textarea name="message" rows="5" required placeholder="Your Message" class="w-full px-4 py-3 rounded-lg border"></textarea>
+              </div>
+              <div class="flex items-center gap-3">
+                <button type="submit" class="px-5 py-3 rounded-lg font-semibold" style="background: linear-gradient(90deg,#b8860b,#ffd26b); color:white;">Send Message</button>
+                <div id="formMsg" class="text-sm text-green-600 hidden">Message sent — thank you!</div>
+              </div>
+            </form>
+          </div>
+
+          <div class="p-6 rounded-2xl gold-accent shadow-sm">
+            <h4 class="text-lg font-semibold mb-3">Visit Our Showroom</h4>
+            <p class="text-gray-700">SM HandMade Works<br>12 Artisan Lane, Jewellery Street<br>Chennai, Tamil Nadu, India</p>
+
+            <div class="mt-4">
+              <p class="text-sm text-gray-600"><strong>Phone:</strong> +91 98XXXX XXXXX</p>
+              <p class="text-sm text-gray-600"><strong>Email:</strong> contact@smhandmadeworks.com</p>
+              <p class="text-sm text-gray-600"><strong>Hours:</strong> Mon–Sat 10:00–19:00</p>
+            </div>
+
+            <div class="mt-6">
+              <h5 class="text-sm font-medium mb-2">Follow us</h5>
+              <div class="flex items-center gap-3">
+                <a aria-label="Instagram" class="p-2 rounded-md hover:bg-white/60" href="#" target="_blank">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" stroke="#6b4a03" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke="#6b4a03" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 6.5h.01" stroke="#6b4a03" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a aria-label="Facebook" class="p-2 rounded-md hover:bg-white/60" href="#" target="_blank">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a4 4 0 00-4 4v3H8v4h3v7h4v-7h3l1-4h-4V6a1 1 0 011-1h3z" stroke="#6b4a03" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a aria-label="WhatsApp" class="p-2 rounded-md hover:bg-white/60" href="#" target="_blank">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M21 12.08A9 9 0 1112.08 3 9 9 0 0121 12.08z" stroke="#6b4a03" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 8.3c-.3-.2-1-.6-1.6-.7-.6-.1-1.2-.1-1.8.6-.6.6-1 1.6-1 1.6s-.4.9.6 1.9c1 .9 1.7 1 2.3 1.5.3.2.4.6.3.9l-.3 1.1c-.1.4-.5.6-.9.4-1.2-.5-3.9-2.1-5.5-3.7C7.8 12 6.9 10.2 7 8.9c.1-1.1 1.1-2.2 2.1-2.4.8-.1 1.4 0 2 .1.6.1 1.2.2 1.8 0 .8-.2 1.6-.2 2.2.3.5.4.7 1.1.5 1.6z" stroke="#6b4a03" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-amber-900 text-white">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 py-8 flex flex-col md:flex-row md:justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="logo-badge" style="width:48px;height:48px;">
+              <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2"><stop offset="0" stop-color="#f7dfb5"/><stop offset="1" stop-color="#b8860b"/></linearGradient></defs><text x="50" y="58" text-anchor="middle" font-family="Playfair Display, serif" font-weight="700" font-size="34" fill="url(#g2)">SM</text></svg>
+            </div>
+            <div>
+              <div class="font-semibold">SM HandMade Works</div>
+              <div class="text-sm text-amber-200">Handcrafted Gold Jewellery</div>
+            </div>
+          </div>
+          <div class="text-sm text-amber-200/90">© <span id="year"></span> SM HandMade Works. All rights reserved.</div>
+        </div>
+
+        <div class="text-sm text-amber-200">
+          <div><strong>Hours</strong>: Mon–Sat 10:00–19:00</div>
+          <div class="mt-2"><strong>Contact</strong>: +91 98XXXX XXXXX • contact@smhandmadeworks.com</div>
+        </div>
+
+        <div class="text-sm text-amber-200">
+          <div><strong>Address</strong></div>
+          <div>12 Artisan Lane, Jewellery Street, Chennai, Tamil Nadu</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating WhatsApp CTA -->
+  <a href="https://wa.me/9198XXXXXXXX" target="_blank" aria-label="WhatsApp" class="fixed right-5 bottom-6 z-50">
+    <div class="flex items-center gap-3 px-4 py-3 rounded-full shadow-lg" style="background:linear-gradient(90deg,#2ebd6e,#1ca66f); color:white;">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M21 12.08A9 9 0 1112.08 3 9 9 0 0121 12.08z" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 8.3c-.3-.2-1-.6-1.6-.7-.6-.1-1.2-.1-1.8.6-.6.6-1 1.6-1 1.6s-.4.9.6 1.9c1 .9 1.7 1 2.3 1.5.3.2.4.6.3.9l-.3 1.1c-.1.4-.5.6-.9.4-1.2-.5-3.9-2.1-5.5-3.7C7.8 12 6.9 10.2 7 8.9c.1-1.1 1.1-2.2 2.1-2.4.8-.1 1.4 0 2 .1.6.1 1.2.2 1.8 0 .8-.2 1.6-.2 2.2.3.5.4.7 1.1.5 1.6z" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="text-sm font-medium">Chat on WhatsApp</span>
+    </div>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile nav toggle
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let open = false;
+    mobileBtn?.addEventListener('click', () => {
+      open = !open;
+      mobileNav.classList.toggle('hidden', !open);
+      const menuIcon = document.getElementById('menuIcon');
+      menuIcon.innerHTML = open
+        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>'
+        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />';
+    });
+
+    // contact form simple handling (demo)
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // in real site: send via fetch to backend or sendgrid / form endpoint
+      form.reset();
+      formMsg.classList.remove('hidden');
+      setTimeout(() => formMsg.classList.add('hidden'), 4000);
+    });
+
+    // smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.length > 1){
+          e.preventDefault();
+          document.querySelector(href)?.scrollIntoView({behavior:'smooth', block:'start'});
+          // close mobile nav if open
+          if(!mobileNav.classList.contains('hidden')) { mobileNav.classList.add('hidden'); open = false; document.getElementById('menuIcon').innerHTML = '<path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 8h16M4 16h16\" />';}
+        }
+      });
+    });
+  </script>
+</body>
+</html>
